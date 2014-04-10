@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  serial_num: MyString
+  alias: MyString
+  address: MyString
+
+two:
+  serial_num: MyString
+  alias: MyString
+  address: MyString

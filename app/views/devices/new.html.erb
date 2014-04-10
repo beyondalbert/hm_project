@@ -1,0 +1,62 @@
+<div class="row row-offcanvas row-offcanvas-right">
+  <div class="col-xs-12 col-sm-9">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">添加监测设备列</div>
+      <div class="panel-body">
+        <p>...</p>
+      </div>
+
+      <%= form_for @device, html: { class: "form-horizontal", role: "form", multipart: false } do |f| %>
+        <% if @device.errors.any? %>
+          <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <ul>
+              <% @device.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <label for="device_serial_num", class="col-sm-2 control-label"><%= f.label :serial_num %></label>
+          <div class="col-sm-7">
+            <%= f.text_field :serial_num, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="device_alias", class="col-sm-2 control-label"><%= f.label :alias %></label>
+          <div class="col-sm-7">
+            <%= f.text_field :alias, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="device_address", class="col-sm-2 control-label"><%= f.label :address %></label>
+          <div class="col-sm-7">
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-7">
+            <%= f.submit '添加', class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+      <a href="#" class="list-group-item">Link</a>
+    </div>
+  </div><!--/span-->
+</div><!--/row-->

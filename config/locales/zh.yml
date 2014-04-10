@@ -11,8 +11,17 @@ zh:
               blank: "不能为空！"
             password_confirmation:
               confirmation: "两次输入密码不一致！"
+        device:
+          attributes:
+            serial_num:
+              blank: "不能为空！"
+              taken: "已经被占用！"
     attributes:
       user:
         email: "Email"
         password: "密码"
         password_confirmation: ""
+      device:
+        serial_num: "设备序列号"
+        alias: "设备别名"
+        address: "设备监测地点"

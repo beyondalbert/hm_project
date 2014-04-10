@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  divece_id: 1
+  temperature: 1.5
+  pm25: 1.5
+  formaldehyde: 1.5
+  detect_time: 2014-03-30 16:58:08
+
+two:
+  divece_id: 1
+  temperature: 1.5
+  pm25: 1.5
+  formaldehyde: 1.5
+  detect_time: 2014-03-30 16:58:08
