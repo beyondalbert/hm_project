@@ -1,7 +1,46 @@
 class DevicesController < ApplicationController
-  before_action :find_device, only: [:edit, :update, :destroy]
+  before_action :find_device, only: [:edit, :update, :destroy, :show]
 
   def index
+  end
+
+  def show
+    @pm25 = []
+    @temperature = []
+    @formaldehyde = []
+    @x_axis = []
+    @time_slot = params[:time_slot]
+    @start = 0
+    case params[:time_slot]
+    when "yesterday"
+      @records = @device.yesterday_records
+    when "last_week"
+      @records = @device.time_slot_records("week")
+    when "last_month"
+      @records = @device.time_slot_records("month")
+      @start = 40
+    when "all"
+      @records = @device.time_slot_records("all")
+      @start = 60
+    else
+      @records = @device.today_records
+    end
+
+    if ["last_week", "last_month", "all"].include? @time_slot
+      @records.each_pair do |key, value|
+        @x_axis << key.strftime("%F")
+        @pm25 << value[:pm25]/value[:count]
+        @temperature << value[:temperature]/value[:count]
+        @formaldehyde << value[:formaldehyde]/value[:count]
+      end
+    else
+      @records.each do |record|
+        @pm25 << record.pm25
+        @temperature << record.temperature
+        @formaldehyde << record.formaldehyde
+        @x_axis << record.detect_time.strftime("%F %H")
+      end
+    end
   end
 
   def new

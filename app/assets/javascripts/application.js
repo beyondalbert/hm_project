@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function toggle_figures(select_div, current_element) {
+  $(".hm-dr").hide();
+  $("#" + select_div).show();
+  $(".active").removeClass("active");
+  $(current_element).addClass("active");
+}

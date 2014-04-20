@@ -20,7 +20,7 @@
           <% current_user.devices.each.with_index do |device, index| %>
             <tr>
               <th><%= index + 1 %></th>
-              <th><%= device.serial_num %></th>
+              <th><%= link_to device.serial_num, device_path(device.id) %></th>
               <th><%= device.alias %></th>
               <th><%= device.address %></th>
               <th>

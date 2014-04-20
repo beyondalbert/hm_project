@@ -1,0 +1,175 @@
+<div class="row row-offcanvas row-offcanvas-right">
+  <div class="col-xs-12 col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">监测设备 <%= @device.alias %> 的数据：</div>
+      <div class="panel-body">
+        <div class="btn-group">
+          <%= link_to "今天", {controller: "devices", action: "show", id: @device.id}, class: "btn #{@time_slot.nil? ? 'btn-primary' : 'btn-default'}" %>
+          <%= link_to "昨天", {controller: "devices", action: "show", id: @device.id, time_slot: "yesterday"}, class: "btn #{@time_slot == "yesterday" ? 'btn-primary' : 'btn-default'}" %>
+          <%= link_to "最近一周", {controller: "devices", action: "show", id: @device.id, time_slot: "last_week"}, class: "btn #{@time_slot == "last_week" ? 'btn-primary' : 'btn-default'}" %>
+          <%= link_to "最近一个月", {controller: "devices", action: "show", id: @device.id, time_slot: "last_month"}, class: "btn #{@time_slot == "last_month" ? 'btn-primary' : 'btn-default'}" %>
+          <%= link_to "全部数据", {controller: "devices", action: "show", id: @device.id, time_slot: "all"}, class: "btn #{@time_slot == "all" ? 'btn-primary' : 'btn-default'}" %>
+        </div>
+        <div id="pm25" class="hm-dr">
+          <div id="pm25-diagram" style="height: 500px;">
+          </div>
+        </div>
+        <div id="formaldehyde" class="hm-dr">
+          <div id="formaldehyde-diagram" style="height: 500px;">
+          </div>
+        </div>
+        <div id="temperature" class="hm-dr" >
+          <div id="temperature-diagram" style="height: 500px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="list-group">
+      <%= link_to "PM 2.5", "#", class: "list-group-item active", onclick: "toggle_figures('pm25', this)" %>
+      <%= link_to "甲醛", "#", class: "list-group-item", onclick: "toggle_figures('formaldehyde', this)" %>
+      <%= link_to "温度", "#", class: "list-group-item", onclick: "toggle_figures('temperature', this)" %>
+    </div>
+  </div><!--/span-->
+</div><!--/row-->
+
+<script type="text/javascript">
+  var pm25Chart = echarts.init(document.getElementById('pm25-diagram'));
+  pm25Chart.setOption({
+tooltip : {
+trigger: 'axis'
+},
+legend: {
+data:['PM2.5值']
+},
+toolbox: {
+show : true,
+feature : {
+mark : {show: true},
+dataZoom: {show: true},
+dataView : {show: true, readOnly: false},
+saveAsImage : {show: true}
+}
+},
+calculable : true,
+dataZoom: {
+show: true,
+realtime: true,
+start: <%= @start %>,
+end: 100
+},
+xAxis: [
+{
+type: 'category',
+      data: <%= raw @x_axis %>
+}
+],
+  yAxis: [
+{
+type: 'value',
+      splitArea: {show: true}
+}
+],
+  series: [
+{
+name:'PM2.5值',
+     type:'line',
+     data: <%= @pm25 %>
+},
+  ]
+  });
+
+var formaldehydeChart = echarts.init(document.getElementById('formaldehyde-diagram'));
+formaldehydeChart.setOption({
+tooltip : {
+trigger: 'axis'
+},
+legend: {
+data:['甲醛值']
+},
+toolbox: {
+show : true,
+feature : {
+mark : {show: true},
+dataZoom: {show: true},
+dataView : {show: true, readOnly: false},
+saveAsImage : {show: true}
+}
+},
+calculable : true,
+dataZoom: {
+show: true,
+realtime: true,
+start: <%= @start %>,
+end: 100
+},
+xAxis: [
+{
+type: 'category',
+      data: <%= raw @x_axis %>
+}
+],
+  yAxis: [
+{
+type: 'value',
+      splitArea: {show: true}
+}
+],
+  series: [
+{
+name:'甲醛值',
+     type:'line',
+     data: <%= @formaldehyde %>
+},
+  ]
+  });
+var temperatureChart = echarts.init(document.getElementById('temperature-diagram'));
+temperatureChart.setOption({
+tooltip : {
+trigger: 'axis'
+},
+legend: {
+data:['温度']
+},
+toolbox: {
+show : true,
+feature : {
+mark : {show: true},
+dataZoom: {show: true},
+dataView : {show: true, readOnly: false},
+saveAsImage : {show: true}
+}
+},
+calculable : true,
+dataZoom: {
+show: true,
+realtime: true,
+start: <%= @start %>,
+end: 100
+},
+xAxis: [
+{
+type: 'category',
+      data: <%= raw @x_axis %>
+}
+],
+  yAxis: [
+{
+type: 'value',
+      splitArea: {show: true}
+}
+],
+  series: [
+{
+name:'温度',
+     type:'line',
+     data: <%= @temperature %>
+},
+  ]
+  });
+
+$("#formaldehyde").hide();
+$("#temperature").hide();
+</script>

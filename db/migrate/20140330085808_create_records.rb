@@ -1,11 +1,11 @@
 class CreateRecords < ActiveRecord::Migration
   def change
     create_table :records do |t|
-      t.integer :divece_id
+      t.integer :device_id
       t.float :temperature
       t.float :pm25
       t.float :formaldehyde
-      t.time :detect_time
+      t.datetime :detect_time
 
       t.timestamps
     end
