@@ -4,6 +4,7 @@ rvm:
 
 before_script:
   - mysql -e 'create database hm_test;'
+  - RAILS_ENV=test bundle exec rake db:migrate
 
 script:
   RAILS_ENV=test bundle exec rake spec spec
