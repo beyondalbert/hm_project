@@ -1,10 +1,6 @@
 class Records < Grape::API
 	format :json
 	resource :records do
-		get :hello do
-			{hello: "world"}
-		end
-
 		desc "get device's data"
 		get do
 			@api_token = ApiToken.find_by_api_token(params[:api_token])

@@ -22,5 +22,15 @@ module Applepie
     # config.i18n.default_locale = :de
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixture => true,
+        :view_specs => false,
+        :helper_specs => true,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
   end
 end
