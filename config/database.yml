@@ -1,29 +1,23 @@
-development:
+default_mysql: &default_mysql
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: hm_dev
   pool: 5
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default_mysql
+  database: hm_dev
   username: root
   password: ""
-  socket: /var/run/mysqld/mysqld.sock
 
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default_mysql
   database: hm_test
-  pool: 5
   username: root
-  password: ""
-  socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default_mysql
   database: hm_pro
-  pool: 5
   username: root
   password: 
-  socket: /var/run/mysqld/mysqld.sock
