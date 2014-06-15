@@ -25,3 +25,33 @@
 .form-signin a {
 	float: right;
 }
+
+.wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -70px;
+}
+
+.push {
+  height: 70px;
+}
+
+.footer {
+  position: relative;
+  height: 70px;
+  background-color: #333333;
+}
+.footer .container {
+  text-align: center;
+  color: #999999;
+  padding: 10px 0px;
+}
+
+.footer-div {
+  padding: 5px 0px;
+}
+
+html, body, .container {
+  height: 100%;
+}

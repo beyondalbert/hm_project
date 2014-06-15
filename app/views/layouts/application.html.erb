@@ -6,19 +6,25 @@
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <%= render :partial => "layouts/top_nav_menu" %>
-    <div class="container">
-      <%= render_flash_messages %>
-      <%= yield %>
+    <div class="wrap">
+      <%= render :partial => "layouts/top_nav_menu" %>
+      <div class="container">
+        <%= render_flash_messages %>
+        <%= yield %>
+      </div>
+      <div class="push"></div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <div class="feedback footer-div">
+          <a href="/feedbacks/new"><span class="glyphicon glyphicon-envelope" style="vertical-align: text-top;"></span> 意见反馈</a> ・ <a href="/about">关于</a> ・ <a href="/disclaimer">免责申明</a>
+        </div>
+        <div class="copyright footer-div">
+          Copyright © 2014-2016 身边买 版权所有 <span style="margin-left:5px"></span>
+        </div>
+      </div>
     </div>
   </body>
 </html>
