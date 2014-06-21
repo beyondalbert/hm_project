@@ -32,4 +32,11 @@ describe Device do
       @device.time_slot_records("all").size.should == 5
     end
   end
+
+  describe "#current_status" do
+    it "返回设备监测的最新的环境状态" do
+      @device = FactoryGirl.create :device, :with_records, serial_num: "123456"
+      @device.current_status.should eq "fine" 
+    end
+  end
 end

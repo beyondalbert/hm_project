@@ -1,2 +1,87 @@
-<h1>Homepage#index</h1>
-<p>Find me in app/views/homepage/index.html.erb</p>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag "1-slide.png", style: "margin: 0 auto;" %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>简单 易用</h1>
+          <p>一键设置，app 扫描添加到自己的监测设备，就可以开始您的环境检测之旅了！</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag "2-slide.png", style: "margin: 0 auto;" %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>智能 呵护</h1>
+          <p>实时空气质量检测，智能通知环境变化，呵护全家人的健康！</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag "3-slide.png", style: "margin: 0 auto;" %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>您专属的环境检测专家</h1>
+          <p>你可以查看过去一周、一月甚至全部的环境监测数据，同时我们会为你提供历史数据的统计分析，为您提供贴心建议！</p>
+          <p><a class="btn btn-lg btn-primary" href="#" role="button">立即购买>></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div><!-- /.carousel -->
+
+<div class="container marketing">
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-5">
+      <h2 class="featurette-heading">模块化设计，只选自己想要的。</h2>
+      <ul class="lead">
+        <li>基础模块，内置温度、湿度和 PM2.5检测</li>
+        <li>甲醛检测模块</li>
+        <li>二氧化碳检测模块</li>
+        <li>辐射检测模块</li>
+        <li>更多检测模块正在研发中</li>
+      </ul>
+    </div>
+    <div class="col-md-7">
+      <%= image_tag "500*500.png" %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <%= image_tag "500*500.png" %>
+    </div>
+    <div class="col-md-5">
+      <h2 class="featurette-heading">环境数据跟着自己走</h2>
+      <p class="lead">我们提供了两种网络接入的方案：wifi 连接和3G无线连接。无论您的检测设备在哪里都能实时的把数据发送到云端，方便在外面的您实时的查看。</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-5">
+      <h2 class="featurette-heading">共享 关爱</h2>
+      <p class="lead">您可以根据需要添加您私人检测设备的共享人名单，比如，可以添加您的妻子到您家的监测设备，这时您的妻子也可以实时的查看家里的环境状况，共享就是这么简单！</p>
+      <p><a class="btn btn-lg btn-primary" href="#" role="button">立即购买>></a></p>
+    </div>
+    <div class="col-md-7">
+      <%= image_tag "500*500.png" %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+</div><!-- /.container -->

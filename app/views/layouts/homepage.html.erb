@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>身边买</title>
+    <title>家庭环境云监测</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -9,9 +9,9 @@
   </head>
   <body>
     <div class="wrap">
-      <div class="container">
+      <%= render :partial => "layouts/top_nav_menu" %>
+        <%= render_flash_messages %>
         <%= yield %>
-      </div>
       <div class="push"></div>
     </div>
     <div class="footer">
@@ -23,5 +23,6 @@
           Copyright © 2014-2016 家庭环境云监测 版权所有 <span style="margin-left:5px"></span>
         </div>
       </div>
+    </div>
   </body>
 </html>

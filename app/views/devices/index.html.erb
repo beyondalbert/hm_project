@@ -1,10 +1,32 @@
 <div class="row row-offcanvas row-offcanvas-right">
-  <div class="col-xs-12 col-sm-9">
+  <div class="col-sm-9">
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">我的监测设备列表</div>
+      <div class="panel-heading">我的监测设备</div>
       <div class="panel-body">
-        <p>...</p>
+
+        <% current_user.devices.each.with_index do |device| %>
+          <div class="col-sm-4">
+            <div class="panel <%= device.box_background_color %> d-box">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= device.alias %></h3>
+              </div>
+              <div class="panel-body">
+                <label>总体质量：</label>
+                <input id="input-id" type="number" class="rating d-status" data-show-clear="false" data-size="" data-disabled="true" value="<%= device.current_status_rate %>">
+                <label>实时环境指标：</label>
+                <ul>
+                  <li>温度:<%= device.latest_record.nil? ? "暂无数据" : device.latest_record.temperature %></li>
+                  <li>PM 2.5: <%= device.latest_record.nil? ? "暂无数据" : device.latest_record.pm25 %></li>
+                  <li>甲醛: <%= device.latest_record.nil? ? "暂无数据" : device.latest_record.formaldehyde %></li>
+                </ul>
+                <p>
+                <%= link_to "环境详情 >>", device_path(device.id), class: "btn btn-sm btn-primary" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       <!-- Table -->
       <table class="table">
@@ -17,39 +39,41 @@
           </tr>
         </thead>
         <tbody>
-          <% current_user.devices.each.with_index do |device, index| %>
-            <tr>
-              <th><%= index + 1 %></th>
-              <th><%= link_to device.serial_num, device_path(device.id) %></th>
-              <th><%= device.alias %></th>
-              <th><%= device.address %></th>
-              <th>
-                <%= link_to(edit_device_path(device.id)) do %>
-                  <span class="glyphicon glyphicon-edit"></span>
-                <% end %>
-                <%= link_to(device_path(device.id), method: :delete, data: { confirm: "确定删除？"}) do %>
-                  <span class="glyphicon glyphicon-trash"></span>
-                <% end %>
-              </th>
-            </tr>
-          <% end %>
+        <% current_user.devices.each.with_index do |device, index| %>
+          <tr>
+            <th><%= index + 1 %></th>
+            <th><%= link_to device.serial_num, device_path(device.id) %></th>
+            <th><%= device.alias %></th>
+            <th><%= device.address %></th>
+            <th>
+              <%= link_to(edit_device_path(device.id)) do %>
+                <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+              <%= link_to(device_path(device.id), method: :delete, data: { confirm: "确定删除？"}) do %>
+                <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+            </th>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+  <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="list-group">
+      <%= link_to "添加监测设备", new_device_path, class: "list-group-item active" %>
+    </div>
     <div class="list-group">
       <a href="#" class="list-group-item active">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
-      <a href="#" class="list-group-item">Link</a>
       <a href="#" class="list-group-item">Link</a>
     </div>
   </div><!--/span-->
 </div><!--/row-->
+
+<script>
+$(".d-status").rating({
+starCaptions: {1: "恶劣", 2: "差", 3: "一般", 4: "不错", 5: "非常好"},
+starCaptionClasses: {1: "label star-1", 2: "label star-2", 3: "label star-3", 4: "label star-4", 5: "label star-5"}
+    });
+</script>

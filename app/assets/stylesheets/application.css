@@ -55,3 +55,23 @@
 html, body, .container {
   height: 100%;
 }
+
+.star-5 {
+  background-color: #d6e9c6;
+}
+
+.star-4 {
+  background-color: #bce8f1;
+}
+
+.star-3 {
+  background-color: #428bca;
+}
+
+.star-2 {
+  background-color: #faebcc;
+}
+
+.star-1 {
+  background-color: #ebccd1;
+}
