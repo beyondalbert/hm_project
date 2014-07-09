@@ -4,7 +4,6 @@
       <!-- Default panel contents -->
       <div class="panel-heading">我的监测设备</div>
       <div class="panel-body">
-
         <% current_user.devices.each.with_index do |device| %>
           <div class="col-sm-4">
             <div class="panel <%= device.box_background_color %> d-box">
@@ -22,6 +21,7 @@
                 </ul>
                 <p>
                 <%= link_to "环境详情 >>", device_path(device.id), class: "btn btn-sm btn-primary" %>
+                <%= link_to "添加关注者 >>", "#add-watcher", class: "btn btn-sm btn-primary", "data-toggle" => "modal", onclick: "$('#watcher_device_id').val(#{device.id})" %>
                 </p>
               </div>
             </div>
@@ -58,6 +58,34 @@
         </tbody>
       </table>
     </div>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">我关注的监测设备</div>
+      <div class="panel-body">
+        <% current_user.star_devices.each.with_index do |device| %>
+          <div class="col-sm-4">
+            <div class="panel <%= device.box_background_color %> d-box">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= device.alias %></h3>
+              </div>
+              <div class="panel-body">
+                <label>总体质量：</label>
+                <input id="input-id" type="number" class="rating d-status" data-show-clear="false" data-size="" data-disabled="true" value="<%= device.current_status_rate %>">
+                <label>实时环境指标：</label>
+                <ul>
+                  <li>温度:<%= device.latest_record.nil? ? "暂无数据" : device.latest_record.temperature %></li>
+                  <li>PM 2.5: <%= device.latest_record.nil? ? "暂无数据" : device.latest_record.pm25 %></li>
+                  <li>甲醛: <%= device.latest_record.nil? ? "暂无数据" : device.latest_record.formaldehyde %></li>
+                </ul>
+                <p>
+                <%= link_to "环境详情 >>", device_path(device.id), class: "btn btn-sm btn-primary" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -70,6 +98,33 @@
     </div>
   </div><!--/span-->
 </div><!--/row-->
+
+<div class="modal fade" id="add-watcher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">添加关注者</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(watchers_path, method: :post, class: "form-horizontal", role: "form") do %>
+          <%= hidden_field_tag 'watcher[device_id]', '' %>
+          <div class="form-group">
+            <label for="user_id", class="col-sm-3 control-label">关注者：</label>
+            <div class="col-sm-7">
+              <%= text_field_tag 'watcher[email]', '', class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+              <%= submit_tag '添 加', class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script>
 $(".d-status").rating({

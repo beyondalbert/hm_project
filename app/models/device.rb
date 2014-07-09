@@ -3,6 +3,7 @@ class Device < ActiveRecord::Base
   validates_uniqueness_of :serial_num
 
   has_many :records, dependent: :destroy
+  has_many :watchers, dependent: :destroy
   belongs_to :user
 
   def today_records

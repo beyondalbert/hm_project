@@ -16,6 +16,10 @@ zh:
             serial_num:
               blank: "不能为空！"
               taken: "已经被占用！"
+        watcher:
+          attributes:
+            user_id:
+              taken: "该用户已经关注该检测器，无需重复添加！"
     attributes:
       user:
         email: "Email"
@@ -25,3 +29,5 @@ zh:
         serial_num: "设备序列号"
         alias: "设备别名"
         address: "设备监测地点"
+      watcher:
+        user_id: ""

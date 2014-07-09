@@ -41,4 +41,9 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
+
+  def star_devices
+    device_ids = Watcher.where(user_id: self.id).collect(&:device_id)
+    Device.where(id: device_ids)
+  end
 end
